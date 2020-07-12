@@ -25,6 +25,10 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+ /*2020.07.12, 修改sdram初始化配置参数：总线位宽改为16bit，删除portc的总线d16-d31部分初始化
+			   修改nandflash芯片型号的配置，增加S34ML01G100和K9F1G08U的配置，这两个芯片还存在不同
+			   在编译时，需要进行不同的配置，S34ML01G，内部带1Bit的硬件ECC， K9F1G08没有，需要区别配置
+ */
 #include "common.h"
 #include "hardware.h"
 #include "arch/at91_ccfg.h"
