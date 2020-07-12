@@ -64,19 +64,13 @@ static void sdramc_init(void)
 
 	sdramc_config.cr = AT91C_SDRAMC_NC_9
 		| AT91C_SDRAMC_NR_13 | AT91C_SDRAMC_CAS_2
-		| AT91C_SDRAMC_NB_4_BANKS | AT91C_SDRAMC_DBW_32_BITS
+		| AT91C_SDRAMC_NB_4_BANKS | AT91C_SDRAMC_DBW_16_BITS
 		| AT91C_SDRAMC_TWR_2 | AT91C_SDRAMC_TRC_7
 		| AT91C_SDRAMC_TRP_2 | AT91C_SDRAMC_TRCD_2
 		| AT91C_SDRAMC_TRAS_5 | AT91C_SDRAMC_TXSR_8;
 
 	sdramc_config.tr = (MASTER_CLOCK * 7) / 1000000;
 	sdramc_config.mdr = AT91C_SDRAMC_MD_SDRAM;
-
-	/* configure sdramc pins */
-	writel(0xFFFF0000, AT91C_BASE_PIOC + PIO_ASR);
-	writel(0xFFFF0000, AT91C_BASE_PIOC + PIO_PDR);
-
-	pmc_enable_periph_clock(AT91C_ID_PIOC);
 
 	/* Initialize the matrix (memory voltage = 3.3) */
 	writel(readl(AT91C_BASE_CCFG + CCFG_EBICSA) | AT91C_EBI_CS1A_SDRAMC,
